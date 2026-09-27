@@ -1,0 +1,74 @@
+AMAZON ML CHALLENGE 2026
+BUSINESS ENTITY RESOLUTION
+EDA FINDINGS
+
+1. DATASET STRUCTURE
+Source 1: 2,206,821 rows.
+Source 2: 5,034,616 rows.
+Source 3: 5,285,603 rows.
+
+Source 1 has unique entity IDs and no missing raw fields.
+
+Source 2:
+- 2 missing business names
+- 168,967 missing business addresses
+
+Source 3:
+- 13 missing business names
+- 175,916 missing business addresses
+
+Ground Truth:
+- 2,206,821 Source 1 entities
+- 123,247 Source 1 entities have no matched entity IDs
+- One Source 1 entity may match multiple Source 2/Source 3 entities.
+
+2. IMPORTANT DATA QUALITY ISSUES
+- Spelling differences
+- Typos
+- Abbreviations
+- Legal suffix variations
+- Punctuation differences
+- Word-order changes
+- "&" versus "and"
+- Corp versus Corporation
+- Pvt versus Private
+- Ltd versus Limited
+- Rd versus Road
+- St versus Street
+- Missing address components
+- Address component reordering
+- Transliteration
+- Landmark-based addresses
+- Municipal numbering differences
+
+3. COUNTRY ANALYSIS
+- Training data contains US and India.
+- Test data additionally contains France.
+- Country should be treated as an open-set field.
+
+4. NORMALIZATION
+Generated fields include:
+- name_clean
+- name_core
+- name_suffix
+- name_alias
+- name_honorific
+- name_fuzzy_key
+- country_clean
+- address_clean
+- address_postal_code
+- address_has_state_abbrev
+- address_fuzzy_key
+
+5. ENTITY RESOLUTION OBSERVATION
+Source 1 is the deduplicated reference source.
+
+Useful matching signals include:
+- Normalized business-name similarity
+- Token overlap
+- Fuzzy name similarity
+- Legal suffix agreement
+- Alias information
+- Address similarity
+- Postal-code agreement
+- Country agreement
